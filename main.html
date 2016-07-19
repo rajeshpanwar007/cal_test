@@ -1,0 +1,118 @@
+<html ng-app="app">
+<head>
+    <title>TEST</title>
+    <link rel="stylesheet" href="./css/bootstrap-3.0.0.min.css">
+    <link rel="stylesheet" href="./css/app.css"/>
+    <script src="./js/angular-1.2.9.min.js"></script>
+    <script src="./js/module.js"></script>
+</head>
+<body>
+<div ng-controller="testController">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 col-sm-8 col-sm-offset-2">
+
+                <div class="ourcontainer">
+
+                    <div class="header">Test</div>
+
+
+                    <div ng-show="options.state == 'start'">
+                        <form>
+                            <div class="form-group">
+                                <label for="example1">Select Operation : </label>
+                                <select id="example1" class="form-control" ng-model="settings.operation"
+                                        ng-options="op.value as op.name for op in options.operations">
+                                    select
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="example2">Digits : </label>
+                                <select id="example2" class="form-control" ng-model="settings.digits">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-default" ng-click="start()"> Start</button>
+
+                        </form>
+
+                    </div>
+
+                    <!-- <div ng-show="options.state == 'setting_updated' ">
+
+                         <button class="btn btn-default" ng-click="start()"> Start</button>
+
+                     </div>-->
+
+                    <div ng-show="options.state == 'start_test' ">
+
+                        <div class="time">Time : {{clock | date:'medium' }}</div>
+
+                        <div class="time_spent"> Spent : {{ time.time_spent}} Sec.</div>
+
+                        <form ng-submit="submit()">
+
+                            <div>
+                                <span>{{value1}}</span> {{settings.operation}} <span>{{value2}}</span> =
+                            </div>
+
+                            <br/>
+
+                            <input type="text" id="result" class="form-control" ng-model="result"/>
+
+                            <br/>
+
+
+                            <button class="btn btn-default" type="submit"> Submit</button>
+                        </form>
+
+                        <br/>
+                        <br/>
+
+                        <button class="btn btn-default" ng-click="finish()"> Submit && Finish</button>
+
+                    </div>
+
+                    <div ng-show="options.state == 'finish' ">
+
+                        Correct : {{output.correct}}
+                        Wrong : {{output.wrong}}
+                        Time : {{output.time_spent}}
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Value 1</th>
+                                <th>Value 2</th>
+                                <th>Your Input</th>
+                                <th>Correct Result</th>
+                            </tr>
+                            <tr ng-repeat="h in history">
+                                <td>{{$index + 1}}.</td>
+                                <td>{{h.value1}}</td>
+                                <td>{{h.value2}}</td>
+                                <td>{{h.result}}</td>
+                                <td>{{h.correct}}</td>
+                            </tr>
+                        </table>
+
+                        <button class="btn btn-default" ng-click="restart()"> Restart</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
